@@ -66,10 +66,52 @@ class LinkedList{
         this.printListData()
     }
     // Get at index
+        getAt(index){
+            let current = this.head;
+            let count = 0;
 
+            while(current) {
+                if(count = index){
+                    console.log(current.data)
+                }
+                count++;
+                current = current.next;
+            }
+            return null;
+        }
     // Remove at index
+    removeAt(index){
+        // if index is out of range
+        if(index > 0 && index > this.size){
+            return;
+        }
+        let current = this.head;
+        let previus;
+        let count = 0;
 
+        //remove first
+        if(index === 0){
+            this.head = current.next;
+        }else{
+            while(count < index){
+                count++;
+                previus = current;
+                current = current.next;
+            }
+
+            previus.next = current.next
+        }
+
+        this.size--;
+        console.log("Removido o item '" + current.data + "' de index: " + "[" + index + "]");
+        this.printListData();
+    }
     // Clear list
+    clearList() {
+        this.head = null;
+        this.size = 0;
+        console.log('Lista limpa.')
+    }
 
     // Print list data
     printListData() {
@@ -89,7 +131,6 @@ const ll = new LinkedList();
 ll.insertFirst(100)
 ll.insertFirst(500)
 ll.insertFirst(400)
-ll.insertLast(2)
-ll.istertAt(700,2)
-ll.istertAt(900,1)
-ll.istertAt(1000,0)
+ll.removeAt(2)
+
+ll.clearList()
